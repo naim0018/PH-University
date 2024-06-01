@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { Code, Months, Name } from "./academicSemester.constant"
-import { TName } from "./academicSemester.interface"
+
 
 
 

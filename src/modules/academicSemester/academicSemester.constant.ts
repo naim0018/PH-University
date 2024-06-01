@@ -17,3 +17,11 @@ export const Months: TMonths[] = [
 
 export const Name: TName[] = ["Autumn", "Summer", "Fall"];
 export const Code: TCode[] = ["01", "02", "03"];
+
+export const academicSemesterCodeMapper :{
+  [key:string] : string
+} ={
+  Autumn : "01",
+  Summer: "02",
+  Fall:"03"
+}

@@ -9,12 +9,13 @@ import { catchAsync } from "../../app/utils/catchAsync";
 
 const createStudent = catchAsync(async (req, res) => {
    
-      const { password, data: studentData } = req.body;
+      const { password, student } = req.body;
 
-      console.log(req.body);
+      
+      console.log(student);
       const result = await UserServices.createStudentData(
         password,
-        studentData
+        student
       );
 
       sendResponse(res, {
