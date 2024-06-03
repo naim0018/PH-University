@@ -7,7 +7,7 @@ const createAcademicDepartmentData=async(payload : TAcademicDepartment)=>{
 } 
 const getAllAcademicDepartmentData =async ()=>{
 
-    const result = await AcademicDepartmentModel.find()
+    const result = await AcademicDepartmentModel.find().populate("academicFaculty")
     return result
 
 }
@@ -17,9 +17,9 @@ const getAcademicDepartmentDataById =async (payload:string)=>{
     return result
 
 }
-const updateAcademicDepartmentData =async (id:string,payload:TAcademicDepartment)=>{
+const updateAcademicDepartmentData =async (id:string,payload:Partial<TAcademicDepartment>)=>{
 
-    const result = await AcademicDepartmentModel.findByIdAndUpdate(id,payload,{new:true})
+    const result = await AcademicDepartmentModel.findOneAndUpdate({_id:id},payload,{new:true})
     return result
 
 }

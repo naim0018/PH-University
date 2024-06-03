@@ -8,6 +8,6 @@ const router = Router()
 router.get("/",AcademicDepartmentControllers.getAllAcademicDepartment)
 router.post("/create-academic-department",validationRequest(AcademicDepartmentValidation.AcademicDepartmentValidationSchema),AcademicDepartmentControllers.createAcademicDepartment)
 router.get("/:id",AcademicDepartmentControllers.getAcademicDepartmentById)
-router.put("/:id",validationRequest(AcademicDepartmentValidation.AcademicDepartmentValidationSchema),AcademicDepartmentControllers.updateAcademicDepartmentById)
+router.patch("/:id",validationRequest(AcademicDepartmentValidation.updateAcademicDepartmentValidationSchema),AcademicDepartmentControllers.updateAcademicDepartmentById)
 
-export const AcademicDepartmentRoute = router
+export const AcademicDepartmentRoute = router 

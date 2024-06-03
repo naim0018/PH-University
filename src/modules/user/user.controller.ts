@@ -27,7 +27,17 @@ const createStudent = catchAsync(async (req, res) => {
     
   }
 );
+const getAllStudent=catchAsync(async(req,res)=>{
+  const result = await UserServices.getAllStudentData()
+  sendResponse(res,{
+    status:StatusCodes.OK,
+    success:true,
+    message:"All user fetched successfully",
+    data:result
+  })
+})
 
 export const UserControllers = {
   createStudent,
+  getAllStudent,
 };
