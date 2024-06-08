@@ -4,17 +4,27 @@ import { StudentModel } from "./student.model";
 import { UserModel } from "../user/user.model";
 import { startSession } from "mongoose";
 import { TStudent } from "./student.interface";
+import QueryBuilder from "../../app/builder/QueryBuilder";
 
-const getAllStudentData = async () => {
-  const result = await StudentModel.find()
-    .populate("academicSemester")
-    .populate({
-      path: "academicDepartment",
-      populate: {
-        path: "academicFaculty",
-        select: "name -_id",
-      },
-    });
+const getAllStudentData = async (query: Record<string, unknown>) => {
+  const searchField = ["email", "name.firstName"];
+  const studentQuery = new QueryBuilder(
+    StudentModel.find()
+      .populate("admissionSemester")
+      .populate({
+        path: "academicDepartment",
+        populate: {
+          path: "academicFaculty",
+        },
+      }),
+    query
+  )
+    .search(searchField)
+    .filter()
+    .sort()
+    .paginate()
+    .fields();
+  const result = await studentQuery.modelQuery;
   return result;
 };
 const getStudentDataById = async (id: string) => {
@@ -88,9 +98,13 @@ const updateStudentDataById = async (
     }
   }
 
-  const result = await StudentModel.findOneAndUpdate({ id }, modifiedUpdateData, {
-    new: true,
-  });
+  const result = await StudentModel.findOneAndUpdate(
+    { id },
+    modifiedUpdateData,
+    {
+      new: true,
+    }
+  );
   return result;
 };
 
@@ -100,3 +114,18 @@ export const StudentService = {
   deleteStudentDataById,
   updateStudentDataById,
 };
+
+// let searchTerm = ''
+// if(query?.searchTerm){
+//   searchTerm = query?.searchTerm as string
+// }
+// const searchField = ['name.firstName','email']
+
+// const searchQuery = StudentModel.find({
+// $or : searchField.map((field)=>({
+//     [field] : {$regex:searchTerm ,$options:'i' }
+// }))
+// })
+// const queryObj ={...query}
+// const excludeField = ['searchTerm']
+// excludeField.forEach((el)=>delete queryObj[el])

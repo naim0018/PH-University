@@ -127,11 +127,12 @@ const StudentSchema = new Schema({
 });
 
 
-StudentSchema.statics.isUserExists = async function (id: string) {
-  console.log(id)
-  const existingUser = await StudentModel.findOne({ id });
-  console.log(existingUser)
- return existingUser
-};
+// StudentSchema.statics.isStudentExists = async function (id: string) {
+//   console.log(id)
+//   const existingStudent = await StudentModel.findOne({ id });
+//   if(existingStudent){
+//     throw new Error ("Student already exist")
+//   }
+// };   
 
 export const StudentModel = model<TStudent>("Student", StudentSchema);
