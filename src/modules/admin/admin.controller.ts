@@ -9,7 +9,7 @@ const getAllAdmin=catchAsync(async (req,res)=>{
     sendResponse(res,{
         status:StatusCodes.OK,
         success:true,
-        message:"All faculty fetched",
+        message:"All admin fetched",
         data:result,
 
     })
@@ -19,7 +19,7 @@ const getAdminById=catchAsync(async (req,res)=>{
     sendResponse(res,{
         status:StatusCodes.OK,
         success:true,
-        message:"Faculty fetched",
+        message:"Admin fetched by Id",
         data:result,
 
     })
@@ -29,7 +29,7 @@ const updateAdminById=catchAsync(async (req,res)=>{
     sendResponse(res,{
         status:StatusCodes.OK,
         success:true,
-        message:"Faculty data updated",
+        message:"Admin data updated",
         data:result,
 
     })
@@ -39,7 +39,7 @@ const deleteAdminById=catchAsync(async (req,res)=>{
     sendResponse(res,{
         status:StatusCodes.OK,
         success:true,
-        message:"Faculty data deleted",
+        message:"Admin data deleted",
         data:result,
 
     })

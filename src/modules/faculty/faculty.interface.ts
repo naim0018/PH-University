@@ -5,8 +5,8 @@ export type TName = {
     lastName:string
 }
 
-export type TGender= ['male','female','others']
-export type TBloodGroup = ['A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-']
+export type TGender= 'male'|'female'|'others'
+export type TBloodGroup = 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-'
 
 export type TFaculty ={
     id:string,
