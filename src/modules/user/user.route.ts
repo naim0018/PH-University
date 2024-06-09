@@ -4,6 +4,7 @@ import {  studentValidations } from "../student/student.validation";
 
 import { validationRequest } from "../../app/middleware/validationRequest";
 import { FacultyValidation } from "../faculty/faculty.validation";
+import { AdminValidation } from "../admin/admin.validation";
 const router = express.Router();
 
 
@@ -14,8 +15,11 @@ router.post(
 router.post(
   "/create-faculty",validationRequest(FacultyValidation.FacultySchemaValidation),UserControllers.createFaculty
 );
+router.post(
+  "/create-admin",validationRequest(AdminValidation.createAdminValidationSchema),UserControllers.createAdmin
+);
 router.get(
-  "/",UserControllers.getAllStudent
+  "/",UserControllers.getAllUser
 );
 
 export const userRoute = router;

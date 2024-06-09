@@ -37,10 +37,10 @@ export const generateStudentId = async (payload: TAcademicSemester) => {
 };
 
 
-export const generateFacultyId = async ()=>{
+export const generateFacultyId = async (role:string)=>{
   
-    const lastFaculty = await UserModel.findOne({
-        role: "faculty",
+    const findLastId= await UserModel.findOne({
+        role: role,
         },
         {
             id:1,
@@ -48,6 +48,6 @@ export const generateFacultyId = async ()=>{
             }
             ).sort({createdAt:-1})
          
-    const facultyId = lastFaculty?.id.split('-')[1] ? (Number(lastFaculty?.id.split('-')[1]) +1).toString().padStart(4,'0') : (1).toString().padStart(4,'0')
-    return `F-${facultyId}`
+    const generatedId  = findLastId?.id.split('-')[1] ? (Number(findLastId?.id.split('-')[1]) +1).toString().padStart(4,'0') : (1).toString().padStart(4,'0')
+    return role ==='admin' ? `A-${generatedId}`:`F-${generatedId}`
 }

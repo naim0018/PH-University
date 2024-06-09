@@ -2,7 +2,7 @@ import { NextFunction, Request, RequestHandler, Response } from "express";
 import { UserServices } from "./user.service";
 import { TStudent } from "../student/student.interface";
 import { sendResponse } from "../../app/utils/sendResponse";
-import { StatusCodes } from "http-status-codes";
+import { StatusCodes, getStatusCode } from "http-status-codes";
 import { catchAsync } from "../../app/utils/catchAsync";
 
 const createStudent = catchAsync(async (req, res) => {
@@ -20,7 +20,7 @@ const createStudent = catchAsync(async (req, res) => {
 const createFaculty = catchAsync(async (req, res) => {
   
   const result = await UserServices.createFacultyData(req.body);
-
+  console.log(req.body)
   sendResponse(res, {
     status: StatusCodes.OK,
     success: true,
@@ -30,9 +30,16 @@ const createFaculty = catchAsync(async (req, res) => {
 });
 const createAdmin = catchAsync(async(req,res)=>{
   const result = await UserServices.createAdminData(req.body)
+  sendResponse(res,{
+    status:StatusCodes.OK,
+    success:true,
+    message:"Admin created successfully",
+    data:result
+  })
+  
 })
-const getAllStudent = catchAsync(async (req, res) => {
-  const result = await UserServices.getAllStudentData();
+const getAllUser = catchAsync(async (req, res) => {
+  const result = await UserServices.getAllUserData();
   sendResponse(res, {
     status: StatusCodes.OK,
     success: true,
@@ -45,5 +52,5 @@ export const UserControllers = {
   createStudent,
   createAdmin,
   createFaculty,
-  getAllStudent,
+  getAllUser,
 };
