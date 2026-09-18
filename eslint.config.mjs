@@ -1,9 +1,6 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
-import { createRequire } from 'module';
-
-const require = createRequire(import.meta.url);
 
 export default [
   {
@@ -26,4 +23,4 @@ export default [
 
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
-]
+];
